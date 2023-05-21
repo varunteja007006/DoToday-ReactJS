@@ -17,16 +17,16 @@ const router = express.Router();
 //get all Taskss
 router.get("/", getTasks);
 
-// //get a single Tasks
-// router.get("/:id", getTask);
+//get a single Tasks
+router.get("/:id", getTask);
 
 //post a new Tasks
 router.post("/", createTask);
 
-// //delete a Tasks
-// router.delete("/:id", deleteTask);
+//delete a Tasks
+router.delete("/:id", deleteTask);
 
-// //Update a Tasks
-// router.patch("/:id", updateTask);
+//Update a Tasks
+router.patch("/:id", updateTask);
 
 module.exports = router;
