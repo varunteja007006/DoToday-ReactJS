@@ -5,19 +5,20 @@ import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
 
 function TaskCheckBox({ id, checked }) {
-  const [checkedItem, setCheckedItem] = useState(checked);
+  const [checkedItem, setCheckedItem] = useState<boolean>(checked);
+  const [disableCheckbox, setDisableCheckbox] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
 
   const handleCheckbox = (e: React.ChangeEvent<any>) => {
+    setCheckedItem(e.target.checked);
     axios
-      .patch(`http://localhost:4000s/api/tasks/` + id, {
+      .patch(`http://localhost:4000/api/tasks/` + id, {
         status: e.target.checked,
       })
       .then(function (response) {
         setErrorMessage(null);
-        setCheckedItem(e.target.checked);
       })
       .catch(function (error) {
         setErrorMessage("Unable to update, please try again later");

@@ -4,8 +4,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
+interface taskType{
+  _id: string,
+  taskName: string,
+  status:boolean
+}
 
-function TaskList({ tasks }) {
+function TaskList({ tasks }: { tasks: [] }) {
   // localStorage.setItem("tasks", JSON.stringify(tasks));
   // const getTasks = localStorage.getItem("tasks");
   // console.log(getTasks);
@@ -30,7 +35,7 @@ function TaskList({ tasks }) {
       .delete(`http://localhost:4000/api/tasks/` + e.target.name)
       .then(function (response) {
         setErrorMessage(null);
-        setSuccessMessage("New Task deleted successfully");
+        setSuccessMessage("Task deleted successfully");
         const data = tasker.taskList.filter(
           (task) => task._id !== response.data._id
         );

@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-
 function NotifyMessage({ message, messageType }) {
-
   return (
     <>
       {messageType === "success" && (
