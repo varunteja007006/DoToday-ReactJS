@@ -9,8 +9,6 @@ function Home() {
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
   const [newTask, setNewTask] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask(e.target.value);
@@ -23,14 +21,10 @@ function Home() {
         taskName: newTask,
       })
       .then(function (response) {
-        setErrorMessage(null);
-        setSuccessMessage("New Task added successfully");
         dispatch(addTask([response.data, ...tasker.taskList]));
       })
       .catch(function (error) {
-        //console.log(error);
-        setErrorMessage(error.message);
-        setSuccessMessage(null);
+        console.log(error.message);
       });
     setNewTask("");
   };
@@ -41,13 +35,11 @@ function Home() {
         .get("http://localhost:4000/api/tasks")
         .then(function (response) {
           if (response.status === 200 && response.statusText === "OK") {
-            //setTaskList(response.data);
-            setErrorMessage(null);
             dispatch(loadTask(response.data));
           }
         })
         .catch((error) => {
-          setErrorMessage(error.message);
+          console.log(error.message);
         });
     };
     fetchData();

@@ -6,8 +6,8 @@ const bcrypt = require("bcrypt");
 //validator for email
 const validator = require("validator");
 
-//login user
-const loginUser = async (req, res) => {
+//signup user
+const signupUser = async (req, res) => {
   const { email, password } = req.body;
   //validation
   if (!email || !password) {
@@ -33,8 +33,8 @@ const loginUser = async (req, res) => {
   }
 };
 
-//signup user
-const signupUser = async (req, res) => {};
+//login user
+const loginUser = async (req, res) => {};
 
 //export the actions
 module.exports = {
