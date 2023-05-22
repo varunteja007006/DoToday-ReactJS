@@ -4,10 +4,10 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
-interface taskType{
-  _id: string,
-  taskName: string,
-  status:boolean
+interface taskType {
+  _id: string;
+  taskName: string;
+  status: boolean;
 }
 
 function TaskList({ tasks }: { tasks: [] }) {
@@ -62,7 +62,7 @@ function TaskList({ tasks }: { tasks: [] }) {
           <button
             name={item["_id"]}
             onClick={handleDelete}
-            className="my-1 p-2 border hover:bg-red-300 hover:border-2 hover:border-red-700 rounded-full mx-2"
+            className="my-1 p-2 border-2 border-red-700 hover:bg-red-300 rounded-full mx-2"
           >
             ❌
           </button>
