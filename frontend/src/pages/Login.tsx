@@ -12,8 +12,10 @@ function Login() {
     e.preventDefault();
     axios
       .post("http://localhost:4000/api/user/login", { ...loginData })
-      .then((data) => {
-        console.log(data);
+      .then((response) => {
+        const { email, token }: { email: string | null; token: string | null } =
+          response.data;
+        console.log(email, token);
         setLoginData({});
       })
       .catch((error) => {

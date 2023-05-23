@@ -1,31 +1,11 @@
-import { useState } from "react";
 import TaskCheckBox from "./TaskCheckBox";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
-interface taskType {
-  _id: string;
-  taskName: string;
-  status: boolean;
-}
+import { TaskType } from "../../interface/interface";
 
 function TaskList({ tasks }: { tasks: [] }) {
-  // localStorage.setItem("tasks", JSON.stringify(tasks));
-  // const getTasks = localStorage.getItem("tasks");
-  // console.log(getTasks);
-  // const initialCheckedItems = {};
-  // tasks.map((item) => {
-  //   initialCheckedItems[item["_id"]] = item["status"];
-  // });
-  // const [checkedItems, setCheckedItems] = useState(initialCheckedItems);
-  // const handleCheckedItems = (e) => {
-  //   setCheckedItems({ ...checkedItems, [e.target.name]: e.target.checked });
-  //   initialCheckedItems[e.target.name] = e.target.checked;
-  //   console.log(initialCheckedItems);
-  // };
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
 
@@ -34,17 +14,15 @@ function TaskList({ tasks }: { tasks: [] }) {
     axios
       .delete(`http://localhost:4000/api/tasks/` + e.target.name)
       .then(function (response) {
-        setErrorMessage(null);
-        setSuccessMessage("Task deleted successfully");
+        //filter the current state to remove the deleted item
         const data = tasker.taskList.filter(
-          (task) => task._id !== response.data._id
+          (task: TaskType) => task._id !== response.data._id
         );
+        //dispatch new state to delete action
         dispatch(deleteTask(data));
       })
       .catch(function (error) {
-        //console.log(error);
-        setErrorMessage(error.message);
-        setSuccessMessage(null);
+        console.log(error);
       });
   };
 

@@ -8,18 +8,20 @@ function Signup() {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
   };
 
-    const handleSubmit = (e: React.ChangeEvent<null>) => {
-      e.preventDefault();
-      axios
-        .post("http://localhost:4000/api/user/signup", { ...signupData })
-        .then((data) => {
-          console.log(data);
-          setSignupData({});
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+  const handleSubmit = (e: React.ChangeEvent<null>) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:4000/api/user/signup", { ...signupData })
+      .then((response) => {
+        const { email, token }: { email: string | null; token: string | null } =
+          response.data;
+        console.log(email, token);
+        setSignupData({});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>

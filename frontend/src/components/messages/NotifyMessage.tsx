@@ -1,4 +1,10 @@
-function NotifyMessage({ message, messageType }) {
+function NotifyMessage({
+  message,
+  messageType,
+}: {
+  message: string;
+  messageType: string;
+}) {
   return (
     <>
       {messageType === "success" && (

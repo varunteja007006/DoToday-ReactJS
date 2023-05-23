@@ -1,15 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTask } from "../../features/taskSlice";
-import { RootState } from "../../store";
+// import { useDispatch, useSelector } from "react-redux";
+// import { RootState } from "../../store";
 
-function TaskCheckBox({ id, checked }) {
+function TaskCheckBox({ id, checked }: { id: string; checked: boolean }) {
   const [checkedItem, setCheckedItem] = useState<boolean>(checked);
-  const [disableCheckbox, setDisableCheckbox] = useState("");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const dispatch = useDispatch();
-  const tasker = useSelector((state: RootState) => state.tasker);
+  // const dispatch = useDispatch()
+  // const tasker = useSelector((state: RootState) => state.tasker);
 
   const handleCheckbox = (e: React.ChangeEvent<any>) => {
     setCheckedItem(e.target.checked);
@@ -18,10 +15,10 @@ function TaskCheckBox({ id, checked }) {
         status: e.target.checked,
       })
       .then(function (response) {
-        setErrorMessage(null);
+        console.log(response);
       })
       .catch(function (error) {
-        setErrorMessage("Unable to update, please try again later");
+        console.log(error.message);
       });
   };
 
@@ -35,7 +32,6 @@ function TaskCheckBox({ id, checked }) {
         onChange={handleCheckbox}
         className="ms-2 self-center"
       />
-      {errorMessage}
     </>
   );
 }
