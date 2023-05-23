@@ -4,12 +4,21 @@ interface InitialState {
   email: string | null;
   token: string | null;
 }
+type UserType = {
+  email?: string;
+  token?: string;
+};
+
 const initialState: InitialState = { email: "", token: "" };
 
 const userSlice = createSlice({
   name: "userAuth",
   initialState,
   reducers: {
+    checkUser: (state, action) => {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
+    },
     loadUser: (state, action) => {
       const userAuthData = action.payload;
       state.email = userAuthData.email;
@@ -24,5 +33,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { loadUser, deleteUser } = userSlice.actions;
+export const { loadUser, deleteUser, checkUser } = userSlice.actions;
 export default userSlice.reducer;

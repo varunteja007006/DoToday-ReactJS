@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, loadTask } from "../features/taskSlice";
 import { RootState } from "../store";
+import { checkUser } from "../features/userSlice";
 
 function Home() {
   const dispatch = useDispatch();
@@ -42,6 +43,15 @@ function Home() {
           console.log(error.message);
         });
     };
+
+    const IsAuthenticated = () => {
+      const user: string | null = localStorage.getItem("user");
+      if (user) {
+        dispatch(checkUser(JSON.parse(user)));
+      }
+    };
+
+    IsAuthenticated();
     fetchData();
   }, [dispatch]);
 

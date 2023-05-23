@@ -10,7 +10,6 @@ function TaskList({ tasks }: { tasks: [] }) {
   const tasker = useSelector((state: RootState) => state.tasker);
 
   const handleDelete = (e: React.ChangeEvent<any>) => {
-    console.log(e.target.name);
     axios
       .delete(`http://localhost:4000/api/tasks/` + e.target.name)
       .then(function (response) {
@@ -31,12 +30,15 @@ function TaskList({ tasks }: { tasks: [] }) {
       {tasks.map((item) => (
         <div className="flex flex-row " key={item["_id"]}>
           <div className="my-1 py-2 flex w-1/2 border-2 border-red-700">
+            {/* task check box component */}
             <TaskCheckBox
               id={item["_id"]}
               checked={item["status"]}
             ></TaskCheckBox>
+            {/* task name */}
             <p className="mx-2 self-center">{item["taskName"]}</p>
           </div>
+          {/* delete button */}
           <button
             name={item["_id"]}
             onClick={handleDelete}

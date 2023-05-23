@@ -17,6 +17,11 @@ function NotifyMessage({
           ❌ {message} !!
         </div>
       )}
+      {messageType === "warning" && (
+        <div className=" bg-red-200 border-2 border-red-700 text-sm w-fit my-2 p-2">
+          ⚠ {message} !!
+        </div>
+      )}
     </>
   );
 }

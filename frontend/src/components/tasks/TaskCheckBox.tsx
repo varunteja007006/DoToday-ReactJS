@@ -1,13 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-// import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from "../../store";
 
 function TaskCheckBox({ id, checked }: { id: string; checked: boolean }) {
   const [checkedItem, setCheckedItem] = useState<boolean>(checked);
-  // const dispatch = useDispatch()
-  // const tasker = useSelector((state: RootState) => state.tasker);
-
+  
   const handleCheckbox = (e: React.ChangeEvent<any>) => {
     setCheckedItem(e.target.checked);
     axios
