@@ -1,9 +1,22 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loadUser } from "../features/userSlice";
+
+//Typescript for email and password properties of signupData
+type SignupDataType = {
+  email?: string;
+  password?: string;
+};
 
 function Signup() {
-  const [signupData, setSignupData] = useState({});
+  const [signupData, setSignupData] = useState<SignupDataType>({
+    email: "",
+    password: "",
+  });
 
+  const dispatch = useDispatch();
+  
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
   };
@@ -15,8 +28,8 @@ function Signup() {
       .then((response) => {
         const { email, token }: { email: string | null; token: string | null } =
           response.data;
-        console.log(email, token);
-        setSignupData({});
+        dispatch(loadUser({ email, token }));
+        setSignupData({ email: "", password: "" });
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +46,9 @@ function Signup() {
           className="p-2 w-1/2 border-2 border-red-600"
           required
           name="email"
+          id="email"
           onChange={handleInput}
+          value={signupData.email}
         ></input>
         <label className="my-2">Password</label>
         <input
@@ -42,7 +57,9 @@ function Signup() {
           className="p-2 w-1/2 border-2 border-red-600"
           required
           name="password"
+          id="password"
           onChange={handleInput}
+          value={signupData.password}
         ></input>
         <button
           type="submit"
