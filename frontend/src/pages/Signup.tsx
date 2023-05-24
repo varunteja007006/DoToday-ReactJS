@@ -37,7 +37,8 @@ function Signup() {
   };
 
   return (
-    <>
+    <div className="p-2">
+      <h3 className="text-2xl">Sign up</h3>
       <form className=" flex flex-col p-2 w-screen" onSubmit={handleSubmit}>
         <label className="my-2">Email</label>
         <input
@@ -68,7 +69,7 @@ function Signup() {
           Sign up
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

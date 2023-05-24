@@ -6,6 +6,8 @@ import { RootState } from "../../store";
 function Navbar() {
   const dispatch = useDispatch();
   const userAuth = useSelector((state: RootState) => state.userAuth);
+  const { user } = userAuth;
+
   const handleLogout = () => {
     dispatch(deleteUser());
   };
@@ -23,7 +25,7 @@ function Navbar() {
         >
           Home
         </Link>
-        {userAuth.email && (
+        {user && (
           <button
             className="bg-red-500 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md"
             onClick={handleLogout}
@@ -31,7 +33,7 @@ function Navbar() {
             Logout
           </button>
         )}
-        {!userAuth.email && (
+        {!user && (
           <>
             <Link
               to="/login"

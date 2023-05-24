@@ -1,33 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
-  email: string | null;
-  token: string | null;
+  user: object | null;
 }
-type UserType = {
-  email?: string;
-  token?: string;
+
+const IsAuthenticated = (): object | null => {
+  console.log("run");
+  const user: unknown = localStorage.getItem("user");
+  if (user) {
+    return user;
+  } else {
+    return null;
+  }
 };
 
-const initialState: InitialState = { email: "", token: "" };
+const getUserData = IsAuthenticated();
+const initialState: InitialState = {
+  user: getUserData,
+};
 
 const userSlice = createSlice({
   name: "userAuth",
   initialState,
   reducers: {
     checkUser: (state, action) => {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
+      state.user = action.payload;
     },
     loadUser: (state, action) => {
       const userAuthData = action.payload;
-      state.email = userAuthData.email;
-      state.token = userAuthData.token;
+      state.user = userAuthData;
       localStorage.setItem("user", JSON.stringify(userAuthData));
     },
     deleteUser: (state) => {
-      state.email = "";
-      state.token = "";
+      state.user = null;
       localStorage.removeItem("user");
     },
   },

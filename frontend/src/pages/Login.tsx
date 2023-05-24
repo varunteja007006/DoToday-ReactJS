@@ -36,11 +36,10 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="p-2">
+      <h3 className="text-2xl">Login</h3>
       <form className=" flex flex-col p-2 w-screen" onSubmit={handleSubmit}>
-        <label className="my-2">
-          Email
-        </label>
+        <label className="my-2">Email</label>
         <input
           type="text"
           placeholder="Type your email. Eg: test@xyz.com"
@@ -50,9 +49,7 @@ function Login() {
           onChange={handleInput}
           value={loginData.email}
         ></input>
-        <label className="my-2">
-          Password
-        </label>
+        <label className="my-2">Password</label>
         <input
           type="password"
           placeholder="Type your password"
@@ -69,7 +66,7 @@ function Login() {
           Login
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

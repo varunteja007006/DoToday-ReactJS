@@ -5,35 +5,29 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
-type UserAuthType = {
-  email?: string | null;
-  token?: string | null;
-};
 
 function App() {
-  const userAuth: UserAuthType = useSelector((state: RootState) => {
-    state.userAuth;
-    if (state.userAuth.email) {
-      return state.userAuth;
-    } else {
-      return { email: "", token: "" };
-    }
-  });
+  const userAuth = useSelector((state: RootState) => state.userAuth);
+  const { user } = userAuth;
+
+  if (!user) {
+    console.log("App", userAuth, user);
+  }
   return (
     <Router>
       <Navbar></Navbar>
       <Routes>
         <Route
           path="/"
-          element={userAuth.email ? <Home></Home> : <Login></Login>}
+          element={user ? <Home></Home> : <Login></Login>}
         ></Route>
         <Route
           path="/login"
-          element={!userAuth.email ? <Login></Login> : <Home></Home>}
+          element={!user ? <Login></Login> : <Home></Home>}
         ></Route>
         <Route
           path="/signup"
-          element={!userAuth.email ? <Signup></Signup> : <Home></Home>}
+          element={!user ? <Signup></Signup> : <Home></Home>}
         ></Route>
       </Routes>
     </Router>
