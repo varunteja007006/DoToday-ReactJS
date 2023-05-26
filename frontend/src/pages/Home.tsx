@@ -4,23 +4,36 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, loadTask } from "../features/taskSlice";
 import { RootState } from "../store";
-import { checkUser } from "../features/userSlice";
 
 function Home() {
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
+  const userAuth = useSelector((state: RootState) => state.userAuth);
   const [newTask, setNewTask] = useState<string>("");
-
+  const [error, setError] = useState<string>("");
+  const { user }: any = userAuth;
   const handleTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask(e.target.value);
   };
 
   const handleSubmit = (e: React.ChangeEvent<null>) => {
+    if (!user) {
+      setError("You must be logged in!!");
+      return;
+    }
     e.preventDefault();
     axios
-      .post("http://localhost:4000/api/tasks", {
-        taskName: newTask,
-      })
+      .post(
+        "http://localhost:4000/api/tasks",
+        {
+          taskName: newTask,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
       .then(function (response) {
         dispatch(addTask([response.data, ...tasker.taskList]));
       })
@@ -33,7 +46,11 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get("http://localhost:4000/api/tasks")
+        .get("http://localhost:4000/api/tasks", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
         .then(function (response) {
           if (response.status === 200 && response.statusText === "OK") {
             dispatch(loadTask(response.data));
@@ -43,17 +60,10 @@ function Home() {
           console.log(error.message);
         });
     };
-
-    const IsAuthenticated = () => {
-      const user: string | null = localStorage.getItem("user");
-      if (user) {
-        dispatch(checkUser(JSON.parse(user)));
-      }
-    };
-
-    IsAuthenticated();
-    fetchData();
-  }, [dispatch]);
+    if (user) {
+      fetchData();
+    }
+  }, [dispatch, user]);
 
   return (
     <>

@@ -1,5 +1,5 @@
 //to load the env variables
-require("dotenv").config(); 
+require("dotenv").config();
 //Import express App
 const express = require("express");
 //Import mongoose to commuicate with mongo db
@@ -18,12 +18,12 @@ app.use(express.json());
 
 //Global middleware
 app.use((req, res, next) => {
-  console.log(req.path,req.method);
+  console.log(req.path, req.method, req.headers);
   next();
 });
 
 //To avoid CORS error
-app.use(cors())
+app.use(cors());
 
 //Add routes
 app.use("/api/tasks", taskRoutes);

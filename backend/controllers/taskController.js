@@ -4,9 +4,9 @@ const Task = require("../models/taskModel");
 
 //get all workouts
 const getTasks = async (req, res) => {
-  //   const user_id = req.user._id;
-  const tasks = await Task.find({}).sort({ createdAt: -1 });
-  res.status(200).json(tasks);
+  const user_id = req.user._id;
+  const tasks = await Task.find({ user_id }).sort({ createdAt: -1 });
+  return res.status(200).json(tasks);
 };
 
 //get single workout
@@ -17,7 +17,7 @@ const getTask = async (req, res) => {
   }
   const task = await Task.findById(id);
   if (!task) {
-    res.status(404).json({ error: "no such task" });
+    return res.status(404).json({ error: "no such task" });
   }
   res.status(200).json(task);
 };
@@ -37,8 +37,8 @@ const createTask = async (req, res) => {
   }
   //add doc to DB
   try {
-    //const user_id = req.user._id;
-    const task = await Task.create({ taskName, status: false });
+    const user_id = req.user._id;
+    const task = await Task.create({ taskName, status: false, user_id });
     res.status(200).json(task);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -53,7 +53,7 @@ const deleteTask = async (req, res) => {
   }
   const task = await Task.findOneAndDelete({ _id: id });
   if (!task) {
-    res.status(404).json({ error: "no such task" });
+    return res.status(404).json({ error: "no such task" });
   }
   res.status(200).json(task);
 };
@@ -67,7 +67,7 @@ const updateTask = async (req, res) => {
   //pass two objects into findOneAndUpdate , find criteria & which has to be updated
   const task = await Task.findOneAndUpdate({ _id: id }, { ...req.body });
   if (!task) {
-    res.status(404).json({ error: "no such task" });
+    return res.status(404).json({ error: "no such task" });
   }
   res.status(200).json(task);
 };

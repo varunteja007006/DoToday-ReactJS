@@ -8,10 +8,16 @@ import { TaskType } from "../../interface/interface";
 function TaskList({ tasks }: { tasks: [] }) {
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
+  const userAuth = useSelector((state: RootState) => state.userAuth);
+  const { user }: any = userAuth;
 
   const handleDelete = (e: React.ChangeEvent<any>) => {
     axios
-      .delete(`http://localhost:4000/api/tasks/` + e.target.name)
+      .delete(`http://localhost:4000/api/tasks/` + e.target.name, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
       .then(function (response) {
         //filter the current state to remove the deleted item
         const data = tasker.taskList.filter(

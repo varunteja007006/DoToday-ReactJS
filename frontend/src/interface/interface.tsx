@@ -4,4 +4,9 @@ interface TaskType {
   status: boolean;
 }
 
-export type { TaskType };
+//userslice initial state
+interface InitialStateType {
+  user: object | null;
+}
+
+export type { TaskType, InitialStateType };

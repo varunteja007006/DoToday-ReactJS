@@ -13,7 +13,7 @@ function Login() {
     email: "",
     password: "",
   });
-  
+
   const dispatch = useDispatch();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ function Login() {
   return (
     <div className="p-2">
       <h3 className="text-2xl">Login</h3>
-      <form className=" flex flex-col p-2 w-screen" onSubmit={handleSubmit}>
+      <form className=" flex flex-col w-screen" onSubmit={handleSubmit}>
         <label className="my-2">Email</label>
         <input
           type="text"

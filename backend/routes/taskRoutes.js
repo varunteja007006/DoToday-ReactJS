@@ -6,13 +6,13 @@ const {
   deleteTask,
   updateTask,
 } = require("../controllers/taskController");
-//const requireAuth = require("../middleware/requireAuth");
+const requireAuth = require("../middlewares/requireAuth");
 
 //express router
 const router = express.Router();
 
 //Middleware
-// router.use(requireAuth);
+router.use(requireAuth);
 
 //get all Taskss
 router.get("/", getTasks);

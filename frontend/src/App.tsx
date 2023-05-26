@@ -1,5 +1,10 @@
 import Navbar from "./components/main/Navbar";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -10,24 +15,21 @@ function App() {
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user } = userAuth;
 
-  if (!user) {
-    console.log("App", userAuth, user);
-  }
   return (
     <Router>
       <Navbar></Navbar>
       <Routes>
         <Route
           path="/"
-          element={user ? <Home></Home> : <Login></Login>}
+          element={user ? <Home></Home> : <Navigate to="/login"></Navigate>}
         ></Route>
         <Route
           path="/login"
-          element={!user ? <Login></Login> : <Home></Home>}
+          element={!user ? <Login></Login> : <Navigate to="/"></Navigate>}
         ></Route>
         <Route
           path="/signup"
-          element={!user ? <Signup></Signup> : <Home></Home>}
+          element={!user ? <Signup></Signup> : <Navigate to="/"></Navigate>}
         ></Route>
       </Routes>
     </Router>

@@ -1,12 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface InitialState {
-  user: object | null;
-}
+import { InitialStateType } from "../interface/interface";
 
 const IsAuthenticated = (): object | null => {
-  console.log("run");
-  const user: unknown = localStorage.getItem("user");
+  const userdata: any = localStorage.getItem("user");
+  const user = JSON.parse(userdata);
   if (user) {
     return user;
   } else {
@@ -15,7 +12,7 @@ const IsAuthenticated = (): object | null => {
 };
 
 const getUserData = IsAuthenticated();
-const initialState: InitialState = {
+const initialState: InitialStateType = {
   user: getUserData,
 };
 
@@ -23,9 +20,6 @@ const userSlice = createSlice({
   name: "userAuth",
   initialState,
   reducers: {
-    checkUser: (state, action) => {
-      state.user = action.payload;
-    },
     loadUser: (state, action) => {
       const userAuthData = action.payload;
       state.user = userAuthData;
@@ -38,5 +32,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { loadUser, deleteUser, checkUser } = userSlice.actions;
+export const { loadUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,15 +1,26 @@
 import { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 function TaskCheckBox({ id, checked }: { id: string; checked: boolean }) {
   const [checkedItem, setCheckedItem] = useState<boolean>(checked);
-  
+  const userAuth = useSelector((state: RootState) => state.userAuth);
+  const { user }: any = userAuth;
   const handleCheckbox = (e: React.ChangeEvent<any>) => {
     setCheckedItem(e.target.checked);
     axios
-      .patch(`http://localhost:4000/api/tasks/` + id, {
-        status: e.target.checked,
-      })
+      .patch(
+        `http://localhost:4000/api/tasks/` + id,
+        {
+          status: e.target.checked,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
       .then(function (response) {
         console.log(response);
       })
