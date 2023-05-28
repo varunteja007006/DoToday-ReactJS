@@ -67,7 +67,6 @@ function Home() {
 
   return (
     <>
-      <div className="p-2">
         <h3 className="text-2xl">Home</h3>
         <form onSubmit={handleSubmit} className="py-2">
           <input
@@ -87,7 +86,6 @@ function Home() {
         </form>
         <h4 className="text-xl underline">Tasks Added</h4>
         <TaskList tasks={tasker.taskList}></TaskList>
-      </div>
     </>
   );
 }

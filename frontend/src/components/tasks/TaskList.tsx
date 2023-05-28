@@ -35,7 +35,7 @@ function TaskList({ tasks }: { tasks: [] }) {
     <>
       {tasks.map((item) => (
         <div className="flex flex-row " key={item["_id"]}>
-          <div className="my-1 py-2 flex w-1/2 border-2 border-red-700">
+          <div className="my-1 py-2 flex border-2 border-red-700">
             {/* task check box component */}
             <TaskCheckBox
               id={item["_id"]}

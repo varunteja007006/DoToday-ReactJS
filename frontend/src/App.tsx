@@ -18,20 +18,22 @@ function App() {
   return (
     <Router>
       <Navbar></Navbar>
-      <Routes>
-        <Route
-          path="/"
-          element={user ? <Home></Home> : <Navigate to="/login"></Navigate>}
-        ></Route>
-        <Route
-          path="/login"
-          element={!user ? <Login></Login> : <Navigate to="/"></Navigate>}
-        ></Route>
-        <Route
-          path="/signup"
-          element={!user ? <Signup></Signup> : <Navigate to="/"></Navigate>}
-        ></Route>
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route
+            path="/"
+            element={user ? <Home></Home> : <Navigate to="/login"></Navigate>}
+          ></Route>
+          <Route
+            path="/login"
+            element={!user ? <Login></Login> : <Navigate to="/"></Navigate>}
+          ></Route>
+          <Route
+            path="/signup"
+            element={!user ? <Signup></Signup> : <Navigate to="/"></Navigate>}
+          ></Route>
+        </Routes>
+      </div>
     </Router>
   );
 }

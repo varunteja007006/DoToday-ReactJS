@@ -37,14 +37,14 @@ function Signup() {
   };
 
   return (
-    <div className="p-2">
+    <>
       <h3 className="text-2xl">Sign up</h3>
-      <form className=" flex flex-col w-screen" onSubmit={handleSubmit}>
+      <form className=" flex flex-col" onSubmit={handleSubmit}>
         <label className="my-2">Email</label>
         <input
           type="text"
           placeholder="Type your email. Eg: test@xyz.com"
-          className="p-2 w-1/2 border-2 border-red-600"
+          className="p-2 border-2 border-red-600"
           required
           name="email"
           id="email"
@@ -55,7 +55,7 @@ function Signup() {
         <input
           type="password"
           placeholder="Type your password"
-          className="p-2 w-1/2 border-2 border-red-600"
+          className="p-2 border-2 border-red-600"
           required
           name="password"
           id="password"
@@ -69,7 +69,7 @@ function Signup() {
           Sign up
         </button>
       </form>
-    </div>
+    </>
   );
 }
 

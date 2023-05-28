@@ -12,7 +12,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-red-300 flex flex-row gap-4">
+    <nav className="bg-red-200 flex flex-row gap-4">
       <Link to="/" className="text-4xl p-2">
         DoToday
       </Link>{" "}
@@ -20,14 +20,14 @@ function Navbar() {
         {" "}
         <Link
           to="/"
-          className="bg-red-500 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md"
+          className="bg-red-300 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md font-semibold"
         >
           Home
         </Link>
         {user && (
           <>
             <button
-              className="bg-red-500 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md"
+              className="bg-red-300 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md font-semibold"
               onClick={handleLogout}
             >
               Logout
@@ -39,15 +39,15 @@ function Navbar() {
           <>
             <Link
               to="/login"
-              className="bg-red-500 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md"
+              className="bg-red-300 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md font-semibold"
             >
               Login
             </Link>
             <Link
               to="/signup"
-              className="bg-red-500 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md"
+              className="bg-red-300 hover:bg-red-400 border-2 border-red-600 p-2 rounded-md font-semibold"
             >
-              Signup
+              Sign up
             </Link>
           </>
         )}

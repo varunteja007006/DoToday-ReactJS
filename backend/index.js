@@ -2,7 +2,7 @@
 require("dotenv").config();
 //Import express App
 const express = require("express");
-//Import mongoose to commuicate with mongo db
+//Import mongoose to communicate with mongo db
 const mongoose = require("mongoose");
 //Import CORS
 const cors = require("cors");
@@ -16,9 +16,10 @@ const app = express();
 //use middleware
 app.use(express.json());
 
-//Global middleware
+// Middleware to console log the req path, method
+// Useful for troubleshooting
 app.use((req, res, next) => {
-  console.log(req.path, req.method, req.headers);
+  console.log(req.path, req.method);
   next();
 });
 
