@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import taskReducer from "./features/taskSlice";
 import userReducer from "./features/userSlice";
+import messageReducer from "./features/messageSlice";
 
 export const store = configureStore({
   reducer: {
     tasker: taskReducer,
     userAuth: userReducer,
+    messenger: messageReducer,
   },
 });
 

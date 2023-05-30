@@ -4,12 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
 import { TaskType } from "../../interface/interface";
+import { deleteMessage, setMessage } from "../../features/messageSlice";
 
 function TaskList({ tasks }: { tasks: [] }) {
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user }: any = userAuth;
+  // const clearMessage = setTimeout(() => {
+  //   dispatch(deleteMessage());
+  //   console.log("start");
+  // }, 5000);
+  // clearTimeout(clearMessage);
 
   const handleDelete = (e: React.ChangeEvent<any>) => {
     axios
@@ -25,35 +31,59 @@ function TaskList({ tasks }: { tasks: [] }) {
         );
         //dispatch new state to delete action
         dispatch(deleteTask(data));
+        dispatch(
+          setMessage({
+            message: "Task deleted Successfully",
+            messageType: response.status,
+          })
+        );
+        setTimeout(() => {
+          dispatch(deleteMessage());
+        }, 5000);
       })
       .catch(function (error) {
-        console.log(error);
+        dispatch(
+          setMessage({
+            message: error.response.data.errorMessage,
+            messageType: error.response.status,
+          })
+        );
       });
   };
 
   return (
     <>
-      {tasks.map((item) => (
-        <div className="flex flex-row" key={item["_id"]}>
-          <div className="my-1 py-2 flex border-2 border-red-700">
-            {/* task check box component */}
-            <TaskCheckBox
-              id={item["_id"]}
-              checked={item["status"]}
-            ></TaskCheckBox>
-            {/* task name */}
-            <p className="mx-2 self-center">{item["taskName"]}</p>
-          </div>
-          {/* delete button */}
-          <button
-            name={item["_id"]}
-            onClick={handleDelete}
-            className="w-fit  h-fit m-3 p-2 border-2 border-red-700 hover:bg-red-300 mx-2"
-          >
-            ❌
-          </button>
-        </div>
-      ))}
+      <table className="table-auto">
+        <tbody>
+          {tasks.map((item) => (
+            <tr key={item["_id"]} className="bg-primary border-2 border-white">
+              <td className="py-2">
+                {/* task check box component */}
+                <TaskCheckBox
+                  id={item["_id"]}
+                  checked={item["status"]}
+                ></TaskCheckBox>
+              </td>
+              <td className="py-2">
+                {/* task name */}
+                <p className="mx-2 self-center">{item["taskName"]}</p>
+              </td>
+              <td className="p-2">
+                {/* delete button */}
+                <button
+                  className="border-2 rounded-full h-12 w-12 bg-red-600 text-white hover:bg-red-500"
+                  name={item["_id"]}
+                  onClick={handleDelete}
+                >
+                  <span className="material-symbols-outlined items-center align-middle p-2 font-bold">
+                    close
+                  </span>
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }

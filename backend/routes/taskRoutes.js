@@ -14,7 +14,7 @@ const router = express.Router();
 //Middleware
 router.use(requireAuth);
 
-//get all Taskss
+//get all Tasks
 router.get("/", getTasks);
 
 //get a single Tasks

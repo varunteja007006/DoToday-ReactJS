@@ -22,10 +22,10 @@ function TaskCheckBox({ id, checked }: { id: string; checked: boolean }) {
         }
       )
       .then(function (response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
-        console.log(error.message);
+        //console.log(error.message);
       });
   };
 

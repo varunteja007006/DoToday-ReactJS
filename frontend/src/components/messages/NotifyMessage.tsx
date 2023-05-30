@@ -3,23 +3,23 @@ function NotifyMessage({
   messageType,
 }: {
   message: string;
-  messageType: string;
+  messageType: number;
 }) {
   return (
     <>
-      {messageType === "success" && (
+      {messageType === 200 && (
         <div className=" border-2 border-green-800 bg-green-400 text-sm w-fit my-2 p-2 align-middle">
-          ✅ {message} !!
+          ✅ {message ? message : "Success"} !!
         </div>
       )}
-      {messageType === "error" && (
+      {messageType === 400 && (
         <div className=" bg-red-200 border-2 border-red-700 text-sm w-fit my-2 p-2">
-          ❌ {message} !!
+          ❌ {message ? message : "Failed"} !!
         </div>
       )}
-      {messageType === "warning" && (
+      {messageType !== 200 && messageType !== 400 && (
         <div className=" bg-red-200 border-2 border-red-700 text-sm w-fit my-2 p-2">
-          ⚠ {message} !!
+          ⚠ {message ? message : "Something went wrong"} !!
         </div>
       )}
     </>

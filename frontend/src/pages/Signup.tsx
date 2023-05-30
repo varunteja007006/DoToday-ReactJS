@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../features/userSlice";
+import NotifyMessage from "../components/messages/NotifyMessage";
+import { RootState } from "../store";
+import { deleteMessage, setMessage } from "../features/messageSlice";
 
 //Typescript for email and password properties of signupData
 type SignupDataType = {
@@ -16,7 +19,7 @@ function Signup() {
   });
 
   const dispatch = useDispatch();
-  
+  const messenger = useSelector((state: RootState) => state.messenger);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
   };
@@ -29,10 +32,16 @@ function Signup() {
         const { email, token }: { email: string | null; token: string | null } =
           response.data;
         dispatch(loadUser({ email, token }));
+        dispatch(deleteMessage());
         setSignupData({ email: "", password: "" });
       })
       .catch((error) => {
-        console.log(error);
+        dispatch(
+          setMessage({
+            message: error.response.data.errorMessage,
+            messageType: error.response.status,
+          })
+        );
       });
   };
 
@@ -69,7 +78,18 @@ function Signup() {
           Sign up
         </button>
       </form>
-      <p className=" text-md text-gray-600">Already have an account? <a className=" font-semibold text-red-700" href="/login">Login here</a></p>
+      <p className=" text-md text-gray-600">
+        Already have an account?{" "}
+        <a className=" font-semibold text-red-700" href="/login">
+          Login here
+        </a>
+      </p>
+      {messenger.message !== null && messenger.messageType && (
+        <NotifyMessage
+          message={messenger.message}
+          messageType={messenger.messageType}
+        ></NotifyMessage>
+      )}
     </>
   );
 }

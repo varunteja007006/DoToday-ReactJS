@@ -6,7 +6,13 @@ const Task = require("../models/taskModel");
 const getTasks = async (req, res) => {
   const user_id = req.user._id;
   const tasks = await Task.find({ user_id }).sort({ createdAt: -1 });
-  return res.status(200).json(tasks);
+  if (tasks) {
+    return res.status(200).json(tasks);
+  } else {
+    return res.status(400).json({
+      error: "Something went wrong. Unable to fetch data from server",
+    });
+  }
 };
 
 //get single workout

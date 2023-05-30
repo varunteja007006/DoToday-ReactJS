@@ -6,8 +6,8 @@ function Footer() {
   const { user }: any = userAuth;
   return (
     <>
-      <footer className="bg-red-700 text-center text-neutral-200 lg:text-left">
-        <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
+      <footer className="bg-secondary text-center text-black font-semibold lg:text-left">
+        <div className="flex items-center justify-center p-6 lg:justify-between">
           {user && (
             <div className="mr-12 hidden lg:block text-sm">
               <span>
@@ -18,15 +18,15 @@ function Footer() {
               </span>
             </div>
           )}
-          <div className="mr-12 hidden lg:block text-sm">
+          <div className="text-sm">
             <span>Follow us on Instagram</span>
           </div>{" "}
-          <div className="mr-12 hidden lg:block text-sm">
+          <div className="text-sm">
             <span>Follow us on Facebook</span>
           </div>{" "}
-          <div className="mr-12 hidden lg:block text-sm">
+          <div className="text-sm">
             <span> © 2023 copyright: www.DoToday.com</span>
-          </div>
+          </div>{" "}
         </div>
       </footer>
     </>
