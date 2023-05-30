@@ -19,7 +19,7 @@ function TaskList({ tasks }: { tasks: [] }) {
 
   const handleDelete = (e: React.ChangeEvent<any>) => {
     axios
-      .delete(`http://localhost:4000/api/tasks/` + e.target.name, {
+      .delete(`http://localhost:4000/api/tasks/` + e.target.id, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -75,7 +75,10 @@ function TaskList({ tasks }: { tasks: [] }) {
                   name={item["_id"]}
                   onClick={handleDelete}
                 >
-                  <span className="material-symbols-outlined items-center align-middle p-2 font-bold">
+                  <span
+                    id={item["_id"]}
+                    className="material-symbols-outlined items-center align-middle p-2 font-bold"
+                  >
                     close
                   </span>
                 </button>
