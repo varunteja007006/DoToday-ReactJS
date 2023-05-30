@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import Footer from "./components/main/Footer";
 
 function App() {
   const userAuth = useSelector((state: RootState) => state.userAuth);
@@ -18,7 +19,7 @@ function App() {
   return (
     <Router>
       <Navbar></Navbar>
-      <div className="container">
+      <div className="container h-screen mt-4">
         <Routes>
           <Route
             path="/"
@@ -34,6 +35,7 @@ function App() {
           ></Route>
         </Routes>
       </div>
+      <Footer></Footer>
     </Router>
   );
 }

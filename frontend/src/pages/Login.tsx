@@ -38,7 +38,7 @@ function Login() {
   return (
     <>
       <h3 className="text-2xl">Login</h3>
-      <form className=" flex flex-col" onSubmit={handleSubmit}>
+      <form className=" flex flex-col w-1/2" onSubmit={handleSubmit}>
         <label className="my-2">Email</label>
         <input
           type="text"
@@ -66,7 +66,12 @@ function Login() {
           Login
         </button>
       </form>
-      <p className=" text-sm text-gray-600">Already have an account?</p>
+      <p className=" text-md text-gray-600">
+        Create a new account?{" "}
+        <a className=" font-semibold text-red-700" href="/signup">
+          Sign up here
+        </a>
+      </p>
     </>
   );
 }

@@ -67,25 +67,28 @@ function Home() {
 
   return (
     <>
-        <h3 className="text-2xl">Home</h3>
-        <form onSubmit={handleSubmit} className="py-2">
-          <input
-            type="text"
-            className="p-2 my-2 border-2 border-red-500"
-            placeholder="Add new task"
-            value={newTask}
-            onChange={handleTaskName}
-            required
-          />
-          <button
-            type="submit"
-            className="border-2 border-red-600 w-fit p-2 mx-2 font-semibold bg-red-200 hover:bg-red-600 hover:text-white"
-          >
-            Add Task
-          </button>
-        </form>
+      <h3 className="text-2xl">Home</h3>
+      <form onSubmit={handleSubmit} className="py-2 w-1/2">
+        <input
+          type="text"
+          className="p-2 my-2 border-2 border-red-500 w-1/2"
+          placeholder="Add new task"
+          value={newTask}
+          onChange={handleTaskName}
+          required
+        />
+        <button
+          type="submit"
+          className="border-2 border-red-600 w-fit p-2 mx-2 font-semibold bg-red-200 hover:bg-red-600 hover:text-white"
+        >
+          Add Task
+        </button>
+      </form>
+      <div className="w-fit">
+        {" "}
         <h4 className="text-xl underline">Tasks Added</h4>
         <TaskList tasks={tasker.taskList}></TaskList>
+      </div>
     </>
   );
 }

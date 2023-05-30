@@ -34,7 +34,7 @@ function TaskList({ tasks }: { tasks: [] }) {
   return (
     <>
       {tasks.map((item) => (
-        <div className="flex flex-row " key={item["_id"]}>
+        <div className="flex flex-row" key={item["_id"]}>
           <div className="my-1 py-2 flex border-2 border-red-700">
             {/* task check box component */}
             <TaskCheckBox
@@ -48,7 +48,7 @@ function TaskList({ tasks }: { tasks: [] }) {
           <button
             name={item["_id"]}
             onClick={handleDelete}
-            className="my-1 p-2 border-2 border-red-700 hover:bg-red-300 rounded-full mx-2"
+            className="w-fit  h-fit m-3 p-2 border-2 border-red-700 hover:bg-red-300 mx-2"
           >
             ❌
           </button>

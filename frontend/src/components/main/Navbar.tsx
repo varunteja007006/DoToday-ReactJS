@@ -32,7 +32,6 @@ function Navbar() {
             >
               Logout
             </button>
-            <p className="text-sm hover:cursor-pointer">{user.email}</p>
           </>
         )}
         {!user && (
