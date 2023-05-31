@@ -5,6 +5,7 @@ import { loadUser } from "../features/userSlice";
 import NotifyMessage from "../components/messages/NotifyMessage";
 import { RootState } from "../store";
 import { deleteMessage, setMessage } from "../features/messageSlice";
+import LoginSubmitButton from "../components/main/LoginSubmitButton";
 
 type LoginDataType = {
   email?: string;
@@ -17,8 +18,8 @@ function Login() {
     password: "",
   });
 
-  const messenger = useSelector((state: RootState) => state.messenger);
   const dispatch = useDispatch();
+  const messenger = useSelector((state: RootState) => state.messenger);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -56,7 +57,7 @@ function Login() {
         <input
           type="text"
           placeholder="Type your email. Eg: test@xyz.com"
-          className="p-2 border-2 border-black"
+          className="p-2 border-2 border-black focus:outline-none focus:ring focus:ring-white"
           required
           name="email"
           onChange={handleInput}
@@ -66,15 +67,16 @@ function Login() {
         <input
           type="password"
           placeholder="Type your password"
-          className="p-2 border-2 border-black"
+          className="p-2 border-2 border-black focus:outline-none focus:ring focus:ring-white"
           required
           name="password"
           onChange={handleInput}
           value={loginData.password}
         ></input>
-        <button type="submit" className="w-fit p-2 my-3 bg-quaternary hover:bg-yellow-300 border-2 border-black">
-          Login
-        </button>
+        <LoginSubmitButton
+          buttonText={"Login"}
+          customClass={""}
+        ></LoginSubmitButton>
       </form>
       <p className=" text-md text-gray-600">
         Create a new account?{" "}

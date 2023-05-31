@@ -21,11 +21,11 @@ function Navbar() {
             🔥DoToday
           </Link>
         </div>
-        <div className="order-last">
+        <div className="order-last text-black">
           {user && (
             <>
               <button
-                className="mx-3 bg-quaternary hover:bg-yellow-200 text-black p-2 rounded-lg border-2 border-black"
+                className=" rounded-lg w-fit p-2 my-3 bg-quaternary border-2 border-black transition ease-in-out delay-150 hover:translate-y-1 hover:scale-95 duration-300 mx-3"
                 onClick={handleLogout}
               >
                 Logout

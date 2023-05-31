@@ -6,11 +6,12 @@ import { RootState } from "../../store";
 import { TaskType } from "../../interface/interface";
 import { deleteMessage, setMessage } from "../../features/messageSlice";
 
-function TaskList({ tasks }: { tasks: [] }) {
+function TaskList() {
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user }: any = userAuth;
+  const tasks = tasker.taskList;
 
   const handleDelete = (e: React.ChangeEvent<any>) => {
     axios
@@ -50,21 +51,27 @@ function TaskList({ tasks }: { tasks: [] }) {
     <>
       <table className="table-auto">
         <tbody>
-          {tasks.map((item) => (
-            <tr key={item["_id"]} className=" bg-gray-100 border-2 border-black">
+          {tasks.map((item, index) => (
+            <tr
+              key={item["_id"]}
+              // className={
+              //   ` border-2 border-black ` +
+              //   (item["status"] ? `bg-gray-500 line-through` : `bg-gray-100`)
+              // }
+              className={` border-2 border-black bg-gray-100`}
+            >
               <td className="py-2">
                 {/* task check box component */}
                 <TaskCheckBox
                   id={item["_id"]}
+                  index={index}
                   checked={item["status"]}
                 ></TaskCheckBox>
               </td>
               <td className="py-2">
-                {/* task name */}
                 <p className="mx-2 self-center">{item["taskName"]}</p>
               </td>
               <td className="p-2">
-                {/* delete button */}
                 <button
                   className="border-2 border-black rounded-full h-12 w-12 bg-quaternary text-black hover:bg-red-600 hover:text-quaternary"
                   name={item["_id"]}

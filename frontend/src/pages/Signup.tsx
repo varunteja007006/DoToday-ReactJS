@@ -5,6 +5,7 @@ import { loadUser } from "../features/userSlice";
 import NotifyMessage from "../components/messages/NotifyMessage";
 import { RootState } from "../store";
 import { deleteMessage, setMessage } from "../features/messageSlice";
+import LoginSubmitButton from "../components/main/LoginSubmitButton";
 
 //Typescript for email and password properties of signupData
 type SignupDataType = {
@@ -48,12 +49,15 @@ function Signup() {
   return (
     <>
       <h3 className="text-2xl">Sign up</h3>
-      <form className=" flex flex-col w-1/2" onSubmit={handleSubmit}>
+      <form
+        className=" flex flex-col w-1/2 font-semibold"
+        onSubmit={handleSubmit}
+      >
         <label className="my-2">Email</label>
         <input
           type="text"
           placeholder="Type your email. Eg: test@xyz.com"
-          className="p-2 border-2 border-red-600"
+          className="p-2 border-2 border-black focus:outline-none focus:ring focus:ring-white"
           required
           name="email"
           id="email"
@@ -64,19 +68,17 @@ function Signup() {
         <input
           type="password"
           placeholder="Type your password"
-          className="p-2 border-2 border-red-600"
+          className="p-2 border-2 border-black focus:outline-none focus:ring focus:ring-white"
           required
           name="password"
           id="password"
           onChange={handleInput}
           value={signupData.password}
         ></input>
-        <button
-          type="submit"
-          className="border-2 border-red-600 w-fit p-2 my-5 font-semibold bg-red-200 hover:bg-red-600 hover:text-white"
-        >
-          Sign up
-        </button>
+        <LoginSubmitButton
+          buttonText={"Sign up"}
+          customClass={""}
+        ></LoginSubmitButton>
       </form>
       <p className=" text-md text-gray-600">
         Already have an account?{" "}

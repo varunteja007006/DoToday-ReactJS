@@ -6,18 +6,23 @@ import { addTask, loadTask } from "../features/taskSlice";
 import { deleteMessage, setMessage } from "../features/messageSlice";
 import NotifyMessage from "../components/messages/NotifyMessage";
 import { RootState } from "../store";
+import LoginSubmitButton from "../components/main/LoginSubmitButton";
 
 function Home() {
+  //redux dispatcher
   const dispatch = useDispatch();
+  //redux states
   const tasker = useSelector((state: RootState) => state.tasker);
   const userAuth = useSelector((state: RootState) => state.userAuth);
+  const messenger = useSelector((state: RootState) => state.messenger);
+  //useState hook
   const [newTask, setNewTask] = useState<string>("");
   const { user }: any = userAuth;
-  const messenger = useSelector((state: RootState) => state.messenger);
+  //handle inputs
   const handleTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask(e.target.value);
   };
-
+  //handle submit
   const handleSubmit = (e: React.ChangeEvent<null>) => {
     if (!user) {
       dispatch(
@@ -60,7 +65,7 @@ function Home() {
       });
     setNewTask("");
   };
-
+  //initial load of data with useEffect hook
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -95,18 +100,16 @@ function Home() {
       <form onSubmit={handleSubmit} className="flex flex-row py-2 w-1/2 ">
         <input
           type="text"
-          className="p-2 border-2 border-black w-1/2"
+          className="p-2 border-2 border-black w-1/2 outline-none focus:border-4 focus:border-quaternary focus:ring focus:ring-primary "
           placeholder="Add new task"
           value={newTask}
           onChange={handleTaskName}
           required
         />
-        <button
-          type="submit"
-          className="w-fit p-2 m-2 bg-quaternary hover:bg-yellow-300 border-2 border-black"
-        >
-          Add Task
-        </button>
+        <LoginSubmitButton
+          buttonText={"Add Task"}
+          customClass={"mx-4"}
+        ></LoginSubmitButton>
         {messenger.message !== null && messenger.messageType && (
           <NotifyMessage
             message={messenger.message}
@@ -116,7 +119,7 @@ function Home() {
       </form>
       <div className="w-fit">
         <h4 className="text-xl underline mb-2">Tasks Added</h4>
-        <TaskList tasks={tasker.taskList}></TaskList>
+        <TaskList></TaskList>
       </div>
     </div>
   );
