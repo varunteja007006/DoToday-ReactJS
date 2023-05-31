@@ -50,7 +50,7 @@ function Login() {
     <>
       <h3 className="text-2xl">Login</h3>
       <form
-        className=" flex flex-col w-1/2 font-semibold"
+        className=" flex flex-col w-100 lg:w-1/2 font-semibold"
         onSubmit={handleSubmit}
       >
         <label className="my-2">Email</label>

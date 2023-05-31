@@ -6,26 +6,26 @@ function Footer() {
   const { user }: any = userAuth;
   return (
     <>
-      <footer className="bg-secondary text-center text-black font-semibold lg:text-left">
-        <div className="flex items-center justify-center p-6 lg:justify-between">
+      <footer className="bg-secondary text-center text-black font-semibold">
+        <div className="items-center justify-center p-6 lg:justify-between gap-4  flex lg:flex-row flex-col">
           {user && (
-            <div className="mr-12 hidden lg:block text-sm">
+            <div className="text-sm">
               <span>
                 Logged in as {user.email}. Not you?{" "}
-                <a className=" font-semibold" href="/logout">
+                <a className="" href="/logout">
                   Log out
                 </a>
               </span>
             </div>
           )}
           <div className="text-sm">
+            <span>Made with 💚Vite + 💙React + 🧡TypeScript</span>
+          </div>
+          <div className="text-sm">
             <span>
               © 2023 copyright:
               https://github.com/varunteja007006/DoToday-ReactJS
             </span>
-          </div>
-          <div className="text-sm">
-            <span>Made with 💚Vite + 💙React + 🧡TypeScript</span>
           </div>
         </div>
       </footer>

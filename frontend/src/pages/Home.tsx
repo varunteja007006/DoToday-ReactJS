@@ -97,10 +97,13 @@ function Home() {
   return (
     <div className="font-semibold text-black">
       <h3 className="text-2xl">Home</h3>
-      <form onSubmit={handleSubmit} className="flex flex-row py-2 w-1/2 ">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-row py-2 lg:w-1/2 w-100 justify-between"
+      >
         <input
           type="text"
-          className="p-2 border-2 border-black w-1/2 outline-none focus:border-4 focus:border-quaternary focus:ring focus:ring-primary "
+          className="p-2 border-2 border-black w-100 lg:w-1/2 outline-none focus:border-4 focus:border-quaternary focus:ring focus:ring-primary "
           placeholder="Add new task"
           value={newTask}
           onChange={handleTaskName}
