@@ -12,7 +12,6 @@ function TaskList() {
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user }: any = userAuth;
   const tasks = tasker.taskList;
-
   const handleDelete = (e: React.ChangeEvent<any>) => {
     axios
       .delete(`http://localhost:4000/api/tasks/` + e.target.id, {
@@ -54,11 +53,11 @@ function TaskList() {
           {tasks.map((item, index) => (
             <tr
               key={item["_id"]}
-              // className={
-              //   ` border-2 border-black ` +
-              //   (item["status"] ? `bg-gray-500 line-through` : `bg-gray-100`)
-              // }
-              className={` border-2 border-black bg-gray-100`}
+                className={
+                  ` border-2 border-black ` +
+                  (item["status"] ? `bg-gray-500 line-through` : `bg-gray-100`)
+                }
+              // className={` border-2 border-black bg-gray-100`}
             >
               <td className="py-2">
                 {/* task check box component */}
