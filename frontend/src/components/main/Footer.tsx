@@ -20,13 +20,16 @@ function Footer() {
           )}
           <div className="text-sm">
             <span>Follow us on Instagram</span>
-          </div>{" "}
+          </div>
           <div className="text-sm">
             <span>Follow us on Facebook</span>
-          </div>{" "}
+          </div>
           <div className="text-sm">
-            <span> © 2023 copyright: www.DoToday.com</span>
-          </div>{" "}
+            <span>
+              © 2023 copyright:
+              https://github.com/varunteja007006/DoToday-ReactJS
+            </span>
+          </div>
         </div>
       </footer>
     </>

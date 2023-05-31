@@ -56,7 +56,7 @@ function TaskList({ tasks }: { tasks: [] }) {
       <table className="table-auto">
         <tbody>
           {tasks.map((item) => (
-            <tr key={item["_id"]} className="bg-primary border-2 border-white">
+            <tr key={item["_id"]} className=" bg-gray-100 border-2 border-black">
               <td className="py-2">
                 {/* task check box component */}
                 <TaskCheckBox
@@ -71,7 +71,7 @@ function TaskList({ tasks }: { tasks: [] }) {
               <td className="p-2">
                 {/* delete button */}
                 <button
-                  className="border-2 rounded-full h-12 w-12 bg-red-600 text-white hover:bg-red-500"
+                  className="border-2 border-black rounded-full h-12 w-12 bg-quaternary text-black hover:bg-red-600 hover:text-quaternary"
                   name={item["_id"]}
                   onClick={handleDelete}
                 >
