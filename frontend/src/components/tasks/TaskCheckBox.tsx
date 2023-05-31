@@ -11,7 +11,6 @@ function TaskCheckBox({ id, checked }: { id: string; checked: boolean }) {
   const dispatch = useDispatch();
   const handleCheckbox = (e: React.ChangeEvent<any>) => {
     setCheckedItem(checkedItem ? false : true);
-    console.log(checkedItem);
     axios
       .patch(
         `http://localhost:4000/api/tasks/` + id,

@@ -11,11 +11,6 @@ function TaskList({ tasks }: { tasks: [] }) {
   const tasker = useSelector((state: RootState) => state.tasker);
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user }: any = userAuth;
-  // const clearMessage = setTimeout(() => {
-  //   dispatch(deleteMessage());
-  //   console.log("start");
-  // }, 5000);
-  // clearTimeout(clearMessage);
 
   const handleDelete = (e: React.ChangeEvent<any>) => {
     axios

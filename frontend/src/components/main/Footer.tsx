@@ -30,6 +30,9 @@ function Footer() {
               https://github.com/varunteja007006/DoToday-ReactJS
             </span>
           </div>
+          <div className="text-sm">
+            <span>Made with 💚Vite + 💙React + 🧡TypeScript</span>
+          </div>
         </div>
       </footer>
     </>

@@ -18,7 +18,7 @@ function Navbar() {
       <nav className="flex justify-between bg-primary py-3 items-center text-white font-semibold">
         <div>
           <Link to="/" className="text-4xl p-2">
-            DoToday
+            🔥DoToday
           </Link>
         </div>
         <div className="order-last">
