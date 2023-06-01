@@ -6,8 +6,8 @@ function Footer() {
   const { user }: any = userAuth;
   return (
     <>
-      <footer className="bg-secondary text-center text-black font-semibold">
-        <div className="items-center justify-center p-6 lg:justify-between gap-4  flex lg:flex-row flex-col">
+      <footer className="bg-secondary text-center text-black font-semibold py-6">
+        <div className="items-center justify-center lg:justify-evenly gap-4  flex lg:flex-row flex-col">
           {user && (
             <div className="text-sm">
               <span>
@@ -19,8 +19,13 @@ function Footer() {
             </div>
           )}
           <div className="text-sm">
-            <span>Made with 💚Vite + 💙React + 🧡TypeScript</span>
+            <span>
+              Built with 💚Vite + 💙React JS + 🧡TypeScript + 💛Node JS +
+              💜Express JS + 🤍MongoDB
+            </span>
           </div>
+        </div>
+        <div className="items-center justify-center p-6 lg:justify-evenly gap-4  flex lg:flex-row flex-col">
           <div className="text-sm">
             <span>
               © 2023 copyright:
