@@ -49,7 +49,6 @@ function TaskCheckBox({
         const data = tasks.filter(
           (task: TaskType) => task._id !== updatedData._id
         );
-        dispatch(deleteTask(data));
         dispatch(addTask([updatedData, ...data]));
         setTimeout(() => {
           dispatch(deleteMessage());

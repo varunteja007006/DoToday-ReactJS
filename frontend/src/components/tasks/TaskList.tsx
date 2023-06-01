@@ -48,18 +48,18 @@ function TaskList() {
 
   return (
     <>
-      <table className="table-auto">
+      <table className="table-fixed w-100">
         <tbody>
           {tasks.map((item, index) => (
             <tr
               key={item["_id"]}
-                className={
-                  ` border-2 border-black ` +
-                  (item["status"] ? `bg-gray-500 line-through` : `bg-gray-100`)
-                }
+              className={
+                `border-2 border-black ` +
+                (item["status"] ? `bg-gray-400 line-through` : `bg-white`)
+              }
               // className={` border-2 border-black bg-gray-100`}
             >
-              <td className="py-2">
+              <td className="py-2 w-auto">
                 {/* task check box component */}
                 <TaskCheckBox
                   id={item["_id"]}
@@ -67,10 +67,10 @@ function TaskList() {
                   checked={item["status"]}
                 ></TaskCheckBox>
               </td>
-              <td className="py-2">
+              <td className="py-2 w-auto">
                 <p className="mx-2 self-center">{item["taskName"]}</p>
               </td>
-              <td className="p-2">
+              <td className="p-2 w-auto">
                 <button
                   className="border-2 border-black rounded-full h-12 w-12 bg-quaternary text-black hover:bg-red-600 hover:text-quaternary"
                   name={item["_id"]}

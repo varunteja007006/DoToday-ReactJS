@@ -99,7 +99,7 @@ function Home() {
       <h3 className="text-2xl">Home</h3>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-row py-2 lg:w-1/2 w-100 justify-between"
+        className="flex flex-col lg:flex-row gap-4 py-2 lg:w-1/2 w-100 justify-start"
       >
         <input
           type="text"
@@ -111,7 +111,7 @@ function Home() {
         />
         <LoginSubmitButton
           buttonText={"Add Task"}
-          customClass={"mx-4"}
+          customClass={""}
         ></LoginSubmitButton>
         {messenger.message !== null && messenger.messageType && (
           <NotifyMessage
@@ -120,7 +120,7 @@ function Home() {
           ></NotifyMessage>
         )}
       </form>
-      <div className="w-fit">
+      <div className="py-2 w-100">
         <h4 className="text-xl underline mb-2">Tasks Added</h4>
         <TaskList></TaskList>
       </div>
