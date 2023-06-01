@@ -1,14 +1,24 @@
-''' port number to run the backend server'''
-PORT=
+## To run the backend
 
-''' mongodb application connection '''
-MONGO_URI = mongodb+srv://<username>:<password>@dotoday.78iu1c4.mongodb.net/?retryWrites=true&w=majority
+> npm install
+> npm start
 
-''' Secret key used as salt to hash the passwords it can be any random string'''
-SECRET = 
+## .env file
 
-'''Username - the one you created while creating the mongo app'''
-USERNAME = 
+Create a .env file. Below is the file path
 
-'''Password - the one you created while creating the mongo app''' 
-PASSWORD = 
+> backend/.env
+
+The .env file should contain the below information
+
+### port number to run the backend server
+
+> PORT=xxxx
+
+### mongodb application connection
+
+> MONGO_URI = mongodb+srv://<username>:<password>@xxxxxxx.xxxxxx.mongodb.net/?retryWrites=true&w=majority
+
+### Secret key used as salt to hash the passwords it can be any random string
+
+> SECRET = iasofnioasfpo239r40rjfodafosd0-2302
