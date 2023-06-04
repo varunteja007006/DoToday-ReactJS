@@ -6,15 +6,10 @@ import NotifyMessage from "../components/messages/NotifyMessage";
 import { RootState } from "../store";
 import { deleteMessage, setMessage } from "../features/messageSlice";
 import LoginSubmitButton from "../components/main/LoginSubmitButton";
-
-//Typescript for email and password properties of signupData
-type SignupDataType = {
-  email?: string;
-  password?: string;
-};
+import { LoginDataType } from "../interface/interface";
 
 function Signup() {
-  const [signupData, setSignupData] = useState<SignupDataType>({
+  const [signupData, setSignupData] = useState<LoginDataType>({
     email: "",
     password: "",
   });

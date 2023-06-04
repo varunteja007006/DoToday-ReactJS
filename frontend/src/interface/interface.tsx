@@ -5,8 +5,35 @@ interface TaskType {
 }
 
 //userslice initial state
-interface InitialStateType {
-  user: object | null;
+interface UserInitialStateType {
+  user: UserType | null;
 }
 
-export type { TaskType, InitialStateType };
+type MessageType = {
+  message: string | null;
+  messageType: number | null;
+};
+
+type UserType = {
+  email: string | null;
+  token: string | null;
+};
+
+type LoginDataType = {
+  email?: string;
+  password?: string;
+};
+
+// Define a type for the slice state
+interface TaskListInitialStateType {
+  taskList: [];
+}
+
+export type {
+  TaskType,
+  UserInitialStateType,
+  MessageType,
+  TaskListInitialStateType,
+  UserType,
+  LoginDataType,
+};

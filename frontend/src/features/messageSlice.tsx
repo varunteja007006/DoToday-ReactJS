@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { MessageType } from "../interface/interface";
 
-const initialState = { message: null, messageType: null };
+const initialState: MessageType = { message: null, messageType: null };
 
 const messageSlice = createSlice({
   name: "messenger",

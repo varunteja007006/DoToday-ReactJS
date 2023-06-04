@@ -5,52 +5,62 @@ import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
 import { TaskType } from "../../interface/interface";
 import { deleteMessage, setMessage } from "../../features/messageSlice";
+import { MouseEvent } from "react";
 
 function TaskList() {
   const dispatch = useDispatch();
   const tasker = useSelector((state: RootState) => state.tasker);
   const userAuth = useSelector((state: RootState) => state.userAuth);
-  const { user }: any = userAuth;
+  const { user } = userAuth;
   const tasks = tasker.taskList;
-  const handleDelete = (e: React.ChangeEvent<any>) => {
-    axios
-      .delete(`http://localhost:4000/api/tasks/` + e.target.id, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
-      .then(function (response) {
-        //filter the current state to remove the deleted item
-        const data = tasker.taskList.filter(
-          (task: TaskType) => task._id !== response.data._id
-        );
-        //dispatch new state to delete action
-        dispatch(deleteTask(data));
-        dispatch(
-          setMessage({
-            message: "Task deleted Successfully",
-            messageType: response.status,
-          })
-        );
-        setTimeout(() => {
-          dispatch(deleteMessage());
-        }, 5000);
-      })
-      .catch(function (error) {
-        dispatch(
-          setMessage({
-            message: error.response.data.errorMessage,
-            messageType: error.response.status,
-          })
-        );
-      });
+  const handleDelete = (e: any) => {
+    if (user) {
+      axios
+        .delete(`http://localhost:4000/api/tasks/` + e.target.id, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then(function (response) {
+          //filter the current state to remove the deleted item
+          const data = tasker.taskList.filter(
+            (task: TaskType) => task._id !== response.data._id
+          );
+          //dispatch new state to delete action
+          dispatch(deleteTask(data));
+          dispatch(
+            setMessage({
+              message: "Task deleted Successfully",
+              messageType: response.status,
+            })
+          );
+          setTimeout(() => {
+            dispatch(deleteMessage());
+          }, 5000);
+        })
+        .catch(function (error) {
+          dispatch(
+            setMessage({
+              message: error.response.data.errorMessage,
+              messageType: error.response.status,
+            })
+          );
+        });
+    } else {
+      dispatch(
+        setMessage({
+          message: "Please login",
+          messageType: 200,
+        })
+      );
+    }
   };
 
   return (
     <>
       <table className="table-fixed w-100">
         <tbody>
-          {tasks.map((item, index) => (
+          {tasks.map((item) => (
             <tr
               key={item["_id"]}
               className={
@@ -63,7 +73,6 @@ function TaskList() {
                 {/* task check box component */}
                 <TaskCheckBox
                   id={item["_id"]}
-                  index={index}
                   checked={item["status"]}
                 ></TaskCheckBox>
               </td>

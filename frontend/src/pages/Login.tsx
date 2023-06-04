@@ -6,11 +6,7 @@ import NotifyMessage from "../components/messages/NotifyMessage";
 import { RootState } from "../store";
 import { deleteMessage, setMessage } from "../features/messageSlice";
 import LoginSubmitButton from "../components/main/LoginSubmitButton";
-
-type LoginDataType = {
-  email?: string;
-  password?: string;
-};
+import { LoginDataType } from "../interface/interface";
 
 function Login() {
   const [loginData, setLoginData] = useState<LoginDataType>({

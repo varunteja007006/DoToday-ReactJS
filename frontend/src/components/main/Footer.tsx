@@ -3,7 +3,7 @@ import { RootState } from "../../store";
 
 function Footer() {
   const userAuth = useSelector((state: RootState) => state.userAuth);
-  const { user }: any = userAuth;
+  const { user } = userAuth;
   return (
     <>
       <footer className="bg-secondary text-center text-black font-semibold py-6">

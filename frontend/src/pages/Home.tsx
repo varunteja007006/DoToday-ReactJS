@@ -17,7 +17,7 @@ function Home() {
   const messenger = useSelector((state: RootState) => state.messenger);
   //useState hook
   const [newTask, setNewTask] = useState<string>("");
-  const { user }: any = userAuth;
+  const { user } = userAuth;
   //handle inputs
   const handleTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask(e.target.value);
@@ -68,30 +68,29 @@ function Home() {
   //initial load of data with useEffect hook
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get("http://localhost:4000/api/tasks", {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        })
-        .then(function (response) {
-          if (response.status === 200 && response.statusText === "OK") {
-            dispatch(loadTask(response.data));
-            dispatch(deleteMessage);
-          }
-        })
-        .catch((error) => {
-          dispatch(
-            setMessage({
-              message: error.response.data.errorMessage,
-              messageType: error.response.status,
-            })
-          );
-        });
+      if (user) {
+        await axios
+          .get("http://localhost:4000/api/tasks", {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          })
+          .then(function (response) {
+            if (response.status === 200 && response.statusText === "OK") {
+              dispatch(loadTask(response.data));
+              dispatch(deleteMessage);
+            }
+          })
+          .catch((error) => {
+            dispatch(
+              setMessage({
+                message: error.response.data.errorMessage,
+                messageType: error.response.status,
+              })
+            );
+          });
+      }
     };
-    if (user) {
-      fetchData();
-    }
   }, [dispatch, user]);
 
   return (

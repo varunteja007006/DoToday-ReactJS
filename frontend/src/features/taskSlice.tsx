@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { TaskListInitialStateType } from "../interface/interface";
 
-// Define a type for the slice state
-interface InitialState {
-  taskList: [];
-}
-
-const initialState: InitialState = { taskList: [] };
+const initialState: TaskListInitialStateType = { taskList: [] };
 
 const taskSlice = createSlice({
   name: "tasker",
@@ -23,5 +19,5 @@ const taskSlice = createSlice({
   },
 });
 
-export const { loadTask, addTask, deleteTask  } = taskSlice.actions;
+export const { loadTask, addTask, deleteTask } = taskSlice.actions;
 export default taskSlice.reducer;

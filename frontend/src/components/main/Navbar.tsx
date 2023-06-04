@@ -7,7 +7,7 @@ import { deleteMessage } from "../../features/messageSlice";
 function Navbar() {
   const dispatch = useDispatch();
   const userAuth = useSelector((state: RootState) => state.userAuth);
-  const { user }: any = userAuth;
+  const { user } = userAuth;
   const handleLogout = () => {
     dispatch(deleteUser());
     dispatch(deleteMessage());

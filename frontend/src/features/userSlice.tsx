@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialStateType } from "../interface/interface";
+import { UserInitialStateType, UserType } from "../interface/interface";
 
-const IsAuthenticated = (): object | null => {
+const IsAuthenticated = (): UserType | null => {
   const userdata: any = localStorage.getItem("user");
-  const user = JSON.parse(userdata);
+  const user: UserType | null = JSON.parse(userdata);
   if (user) {
     return user;
   } else {
@@ -12,7 +12,7 @@ const IsAuthenticated = (): object | null => {
 };
 
 const getUserData = IsAuthenticated();
-const initialState: InitialStateType = {
+const initialState: UserInitialStateType = {
   user: getUserData,
 };
 
