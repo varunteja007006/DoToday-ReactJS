@@ -43,7 +43,7 @@ function Signup() {
 
   return (
     <>
-      <h3 className="text-2xl">Sign up</h3>
+      <h3 className="text-2xl font-semibold">Sign up</h3>
       <form
         className=" flex flex-col w-100 lg:w-1/2 font-semibold"
         onSubmit={handleSubmit}
@@ -75,7 +75,7 @@ function Signup() {
           customClass={""}
         ></LoginSubmitButton>
       </form>
-      <p className=" text-md text-gray-600">
+      <p className=" text-md text-gray-600 ">
         Already have an account?{" "}
         <a className=" font-semibold text-red-700" href="/login">
           Login here

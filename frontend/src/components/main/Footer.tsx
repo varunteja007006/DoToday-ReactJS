@@ -6,7 +6,7 @@ function Footer() {
   const { user } = userAuth;
   return (
     <>
-      <footer className="bg-secondary text-center text-black font-semibold py-6">
+      <footer className="bg-secondary text-center text-black font-bold py-6">
         <div className="items-center justify-center lg:justify-evenly gap-4  flex lg:flex-row flex-col">
           {user && (
             <div className="text-sm">

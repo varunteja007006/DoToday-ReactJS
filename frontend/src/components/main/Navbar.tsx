@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { deleteUser } from "../../features/userSlice";
 import { RootState } from "../../store";
 import { deleteMessage } from "../../features/messageSlice";
@@ -11,6 +11,7 @@ function Navbar() {
   const handleLogout = () => {
     dispatch(deleteUser());
     dispatch(deleteMessage());
+    redirect("/login");
   };
 
   return (

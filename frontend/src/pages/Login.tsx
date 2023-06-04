@@ -45,7 +45,7 @@ function Login() {
   return (
     <>
       <div>
-        <h3 className="text-2xl">Login</h3>
+        <h3 className="text-2xl font-semibold">Login</h3>
         <form
           className=" flex flex-col w-100 lg:w-1/2 font-semibold"
           onSubmit={handleSubmit}
