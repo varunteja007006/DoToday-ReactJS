@@ -13,14 +13,16 @@ Create a .env file. Below is the file path
 
 The .env file should contain the below information
 
-### port number to run the backend server
+Port number to run the backend server
 
 > PORT=xxxx
 
-### mongodb application connection
+Mongodb application connection
 
-> MONGO_URI = mongodb+srv://<username>:<password>@xxxxxxx.xxxxxx.mongodb.net/?retryWrites=true&w=majority
+> MONGO_URI = mongodb+srv://XXXXXusernameXXXXX:XXXXXpasswordXXXXX@xxxxxxx.xxxxxx.mongodb.net/?retryWrites=true&w=majority
 
-### Secret key used as salt to hash the passwords it can be any random string
+Secret key used as salt to hash the passwords it can be any random string
 
 > SECRET = iasofnioasfpo239r40rjfodafosd0-2302
+
+Once you backend is setup it is time to check the frontend. Check the README.md for the frontend for more information.
