@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import LogoutButton from "./LogoutButton";
 
 function Footer() {
   const userAuth = useSelector((state: RootState) => state.userAuth);
@@ -11,10 +12,7 @@ function Footer() {
           {user && (
             <div className="text-sm">
               <span>
-                Logged in as {user.email}. Not you?{" "}
-                <a className="" href="/logout">
-                  Log out
-                </a>
+                Logged in as {user.email}. Not you? <LogoutButton />
               </span>
             </div>
           )}

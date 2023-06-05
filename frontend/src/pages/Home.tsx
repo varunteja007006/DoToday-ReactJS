@@ -78,6 +78,7 @@ function Home() {
           .then(function (response) {
             if (response.status === 200 && response.statusText === "OK") {
               dispatch(loadTask(response.data));
+              console.log(response.data);
               dispatch(deleteMessage);
             }
           })
@@ -91,6 +92,9 @@ function Home() {
           });
       }
     };
+    if (user) {
+      fetchData();
+    }
   }, [dispatch, user]);
 
   return (

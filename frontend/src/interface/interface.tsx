@@ -26,7 +26,7 @@ type LoginDataType = {
 
 // Define a type for the slice state
 interface TaskListInitialStateType {
-  taskList: [];
+  taskList: (string | boolean | null | number)[];
 }
 
 export type {
