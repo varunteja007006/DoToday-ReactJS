@@ -4,7 +4,9 @@
 
 > npm install
 > npm start
-
+or
+> npm dev
+npm dev allows to run the backend with nodemon. It can help reload the server whenever any changes are made in backend.
 ## .env file
 
 Create a .env file. Below is the file path

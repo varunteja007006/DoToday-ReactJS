@@ -18,7 +18,7 @@ function LogoutButton() {
       {user && (
         <>
           <button
-            className=" rounded-lg w-fit p-2 my-3 bg-quaternary border-2 border-black transition ease-in-out delay-150 hover:translate-y-1 hover:scale-95 duration-300 mx-3"
+            className=" rounded-lg w-fit p-2 my-3 bg-quaternary border-2 border-black transition ease-in-out delay-150 hover:translate-y-1 hover:scale-95 duration-300 mx-3 hover:shadow hover:shadow-black"
             onClick={handleLogout}
           >
             Logout

@@ -19,21 +19,14 @@ function Navbar() {
     <>
       <nav className="flex justify-between bg-primary py-3 items-center text-white font-semibold">
         <div>
-          <Link to="/" className="text-4xl p-2">
-            🔥DoToday
+          <Link to="/" className="text-4xl p-2 flex flex-row">
+            <div className=" animate-pulseLogo hover:animate-bounce">
+              🔥
+            </div>
+            DoToday
           </Link>
         </div>
         <div className="order-last text-black">
-          {/* {user && (
-            <>
-              <button
-                className=" rounded-lg w-fit p-2 my-3 bg-quaternary border-2 border-black transition ease-in-out delay-150 hover:translate-y-1 hover:scale-95 duration-300 mx-3"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </>
-          )} */}
           <LogoutButton></LogoutButton>
           {!user && (
             <>

@@ -8,7 +8,7 @@ function Footer() {
   return (
     <>
       <footer className="bg-secondary text-center text-black font-bold py-6">
-        <div className="items-center justify-center lg:justify-evenly gap-4  flex lg:flex-row flex-col">
+        <div className="items-center justify-center lg:justify-evenly gap-4 flex lg:flex-row flex-col">
           {user && (
             <div className="text-sm">
               <span>
@@ -16,6 +16,8 @@ function Footer() {
               </span>
             </div>
           )}
+        </div>
+        <div className="items-center justify-center my-2 lg:justify-evenly gap-4 flex lg:flex-row flex-col">
           <div className="text-sm">
             <span>
               Built with 💚Vite + 💙React JS + 🧡TypeScript + 💛Node JS +
