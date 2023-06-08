@@ -24,7 +24,7 @@ function Login() {
   const handleSubmit = (e: React.ChangeEvent<null>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/api/user/login", { ...loginData })
+      .post(import.meta.env.VITE_API_URL + `/api/user/login`, { ...loginData })
       .then((response) => {
         const { email, token }: { email: string | null; token: string | null } =
           response.data;

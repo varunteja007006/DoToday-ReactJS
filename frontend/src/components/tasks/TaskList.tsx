@@ -3,9 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
-import { TaskType } from "../../interface/interface";
 import { deleteMessage, setMessage } from "../../features/messageSlice";
-import { MouseEvent } from "react";
 
 function TaskList() {
   const dispatch = useDispatch();
@@ -16,7 +14,7 @@ function TaskList() {
   const handleDelete = (e: any) => {
     if (user) {
       axios
-        .delete(`http://localhost:4000/api/tasks/` + e.target.id, {
+        .delete(import.meta.env.API_URL + `/api/tasks/` + e.target.id, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -24,7 +22,7 @@ function TaskList() {
         .then(function (response) {
           //filter the current state to remove the deleted item
           const data = tasker.taskList.filter(
-            (task: TaskType) => task._id !== response.data._id
+            (task: any) => task._id !== response.data._id
           );
           //dispatch new state to delete action
           dispatch(deleteTask(data));
@@ -60,7 +58,7 @@ function TaskList() {
     <>
       <table className="table-fixed w-100">
         <tbody>
-          {tasks.map((item) => (
+          {tasks.map((item: any) => (
             <tr
               key={item["_id"]}
               className={

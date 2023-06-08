@@ -23,7 +23,7 @@ function Signup() {
   const handleSubmit = (e: React.ChangeEvent<null>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/api/user/signup", { ...signupData })
+      .post(import.meta.env.VITE_API_URL+`/api/user/signup`, { ...signupData })
       .then((response) => {
         const { email, token }: { email: string | null; token: string | null } =
           response.data;

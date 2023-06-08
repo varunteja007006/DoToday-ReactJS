@@ -70,7 +70,7 @@ function Home() {
     const fetchData = async () => {
       if (user) {
         await axios
-          .get("http://localhost:4000/api/tasks", {
+          .get(import.meta.env.API_URL + `/api/tasks`, {
             headers: {
               Authorization: `Bearer ${user.token}`,
             },

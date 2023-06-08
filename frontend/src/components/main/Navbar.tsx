@@ -1,28 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link, redirect } from "react-router-dom";
-import { deleteUser } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { RootState } from "../../store";
-import { deleteMessage } from "../../features/messageSlice";
 import LogoutButton from "./LogoutButton";
 
 function Navbar() {
-  const dispatch = useDispatch();
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user } = userAuth;
-  const handleLogout = () => {
-    dispatch(deleteUser());
-    dispatch(deleteMessage());
-    redirect("/login");
-  };
 
   return (
     <>
       <nav className="flex justify-between bg-primary py-3 items-center text-white font-semibold">
         <div>
           <Link to="/" className="text-4xl p-2 flex flex-row">
-            <div className=" animate-pulseLogo hover:animate-bounce">
-              🔥
-            </div>
+            <div className=" animate-pulseLogo hover:animate-bounce">🔥</div>
             DoToday
           </Link>
         </div>

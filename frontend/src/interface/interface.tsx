@@ -24,7 +24,7 @@ type LoginDataType = {
   password?: string;
 };
 
-// Define a type for the slice state
+// Define a type for the taskSlice state
 interface TaskListInitialStateType {
   taskList: (string | boolean | null | number)[];
 }

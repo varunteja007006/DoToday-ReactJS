@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { deleteMessage, setMessage } from "../../features/messageSlice";
 import { addTask } from "../../features/taskSlice";
-import { TaskType } from "../../interface/interface";
 
 type checkBoxType = {
   id: string;
@@ -19,13 +18,13 @@ function TaskCheckBox({ id, checked }: checkBoxType) {
   const { user } = userAuth;
   const tasks = tasker.taskList;
 
-  const handleCheckbox = async (e:any) => {
+  const handleCheckbox = async (e: any) => {
     e.preventDefault();
     setCheckedItem(checkedItem ? false : true);
     if (user) {
       await axios
         .patch(
-          `http://localhost:4000/api/tasks/` + id,
+          import.meta.env.API_URL + `/api/tasks/` + id,
           {
             status: checkedItem ? false : true,
           },
@@ -45,7 +44,7 @@ function TaskCheckBox({ id, checked }: checkBoxType) {
           const updatedData = response.data;
           updatedData["status"] = updatedData.status ? false : true;
           const data = tasks.filter(
-            (task: TaskType) => task._id !== updatedData._id
+            (task: any) => task._id !== updatedData._id
           );
           dispatch(addTask([updatedData, ...data]));
           setTimeout(() => {
