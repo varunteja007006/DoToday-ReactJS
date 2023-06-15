@@ -17,16 +17,16 @@ router.use(requireAuth);
 //get all Tasks
 router.get("/", getTasks);
 
-//get a single Tasks
+//get a single Task
 router.get("/:id", getTask);
 
-//post a new Tasks
+//post a new Task
 router.post("/", createTask);
 
-//delete a Tasks
+//delete a Task
 router.delete("/:id", deleteTask);
 
-//Update a Tasks
+//Update a Task
 router.patch("/:id", updateTask);
 
 module.exports = router;

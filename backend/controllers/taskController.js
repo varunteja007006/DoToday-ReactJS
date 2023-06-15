@@ -2,7 +2,7 @@
 const { default: mongoose } = require("mongoose");
 const Task = require("../models/taskModel");
 
-//get all workouts
+//get all tasks
 const getTasks = async (req, res) => {
   const user_id = req.user._id;
   const tasks = await Task.find({ user_id }).sort({ createdAt: -1 });
@@ -15,7 +15,7 @@ const getTasks = async (req, res) => {
   }
 };
 
-//get single workout
+//get single task
 const getTask = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -28,7 +28,7 @@ const getTask = async (req, res) => {
   res.status(200).json(task);
 };
 
-//create a new workout
+//create a new task
 const createTask = async (req, res) => {
   const { taskName } = req.body;
   //validate if fields are empty
@@ -51,7 +51,7 @@ const createTask = async (req, res) => {
   }
 };
 
-//delete a workout
+//delete a task
 const deleteTask = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -64,7 +64,7 @@ const deleteTask = async (req, res) => {
   res.status(200).json(task);
 };
 
-//update a workout
+//update a task
 const updateTask = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
