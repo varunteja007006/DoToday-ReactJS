@@ -14,7 +14,7 @@ function TaskList() {
   const handleDelete = (e: any) => {
     if (user) {
       axios
-        .delete(import.meta.env.API_URL + `/api/tasks/` + e.target.id, {
+        .delete(import.meta.env.VITE_API_URL + `/api/tasks/` + e.target.id, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

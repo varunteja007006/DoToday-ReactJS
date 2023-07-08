@@ -24,7 +24,7 @@ function TaskCheckBox({ id, checked }: checkBoxType) {
     if (user) {
       await axios
         .patch(
-          import.meta.env.API_URL + `/api/tasks/` + id,
+          import.meta.env.VITE_API_URL + `/api/tasks/` + id,
           {
             status: checkedItem ? false : true,
           },
@@ -46,7 +46,8 @@ function TaskCheckBox({ id, checked }: checkBoxType) {
           const data = tasks.filter(
             (task: any) => task._id !== updatedData._id
           );
-          dispatch(addTask([updatedData, ...data]));
+          updatedData.status?(dispatch(addTask([...data,updatedData ]))):(dispatch(addTask([updatedData, ...data])))
+          ;
           setTimeout(() => {
             dispatch(deleteMessage());
           }, 5000);

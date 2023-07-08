@@ -26,3 +26,5 @@ frontend/*.sln
 frontend/*.sw?
 backend/.env
 notes.txt
+frontend/.env
+.gitignore
