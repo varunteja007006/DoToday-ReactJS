@@ -12,10 +12,8 @@ Create tasks and lists with a simple and elegant interface
 Login with your account and sync your tasks across devices
 Mark your tasks as completed with a satisfying checkbox
 
-## For more information on the porject checkout the README.md in backend and frontend documents.
+## For more information on the project checkout the README.md in backend and frontend documents.
 
 ### Built with 💚Vite + 💙React JS + 🧡TypeScript + 💛Node JS + 💜Express JS + 🤍MongoDB
 
 Thank you for checking this project😀.
-
-Checkout my other projects on Django as well.
