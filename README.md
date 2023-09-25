@@ -8,9 +8,9 @@ DoToday is built with tailwind css, React Redux, React JS, Typescript JS, MongoD
 
 ## Features
 
-Create tasks and lists with a simple and elegant interface
-Login with your account and sync your tasks across devices
-Mark your tasks as completed with a satisfying checkbox
+- Create tasks and lists with a simple and elegant interface
+- Login with your account and sync your tasks across devices
+- Mark your tasks as completed with a satisfying checkbox
 
 ## For more information on the project checkout the README.md in backend and frontend documents.
 
