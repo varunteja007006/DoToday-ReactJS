@@ -22,6 +22,7 @@ function Home() {
   const handleTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask(e.target.value);
   };
+  
   //handle submit
   const handleSubmit = (e: React.ChangeEvent<null>) => {
     if (!user) {
@@ -30,6 +31,7 @@ function Home() {
       );
       return;
     }
+    
     e.preventDefault();
     axios
       .post(
@@ -65,6 +67,7 @@ function Home() {
       });
     setNewTask("");
   };
+  
   //initial load of data with useEffect hook
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +80,7 @@ function Home() {
           })
           .then(function (response) {
             if (response.status === 200 && response.statusText === "OK") {
-              dispatch(loadTask(response.data));
+              dispatch(loadTask(response.data));              
               dispatch(deleteMessage);
             }
           })
