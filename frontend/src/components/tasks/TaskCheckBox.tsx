@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { deleteMessage, setMessage } from "../../features/messageSlice";
-import { addTask } from "../../features/taskSlice";
+import { addTask, updateTask } from "../../features/taskSlice";
 
 type checkBoxType = {
   id: string;
@@ -20,13 +20,14 @@ function TaskCheckBox({ id, checked }: checkBoxType) {
 
   const handleCheckbox = async (e: any) => {
     e.preventDefault();
-    setCheckedItem(checkedItem ? false : true);
+    setCheckedItem(!checkedItem);
+    // check if user is logged in or not
     if (user) {
       await axios
         .patch(
           import.meta.env.VITE_API_URL + `/api/tasks/` + id,
           {
-            status: checkedItem ? false : true,
+            status: !checkedItem,
           },
           {
             headers: {
@@ -35,19 +36,19 @@ function TaskCheckBox({ id, checked }: checkBoxType) {
           }
         )
         .then(function (response) {
+          const data: any = response.data;
+          return data;
+        })
+        .then((data) => {
           dispatch(
             setMessage({
               message: "Task updated",
-              messageType: response.status,
+              messageType: 200,
             })
           );
-          const updatedData = response.data;
+          const updatedData: any = { ...data };
           updatedData["status"] = updatedData.status ? false : true;
-          const data = tasks.filter(
-            (task: any) => task._id !== updatedData._id
-          );
-          updatedData.status?(dispatch(addTask([...data,updatedData ]))):(dispatch(addTask([updatedData, ...data])))
-          ;
+          dispatch(updateTask(updatedData));
           setTimeout(() => {
             dispatch(deleteMessage());
           }, 5000);
@@ -61,6 +62,7 @@ function TaskCheckBox({ id, checked }: checkBoxType) {
           );
         });
     } else {
+      // if user not logged throw error
       dispatch(
         setMessage({
           message: "Please login",

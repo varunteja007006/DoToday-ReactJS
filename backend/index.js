@@ -32,7 +32,7 @@ app.use("/api/user", userRoutes);
 
 //connect to Mongo DB
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, { dbName: "DoToday" })
   .then(() => {
     console.log("connected to MongoDB");
     //listen for requests on the port
