@@ -1,5 +1,5 @@
 import TaskCheckBox from "./TaskCheckBox";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../../features/taskSlice";
 import { RootState } from "../../store";
@@ -11,39 +11,34 @@ function TaskList() {
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user } = userAuth;
   const tasks = tasker.taskList;
-  const handleDelete = (e: any) => {
+  const handleDelete = async (e: any) => {
     if (user) {
-      axios
-        .delete(import.meta.env.VITE_API_URL + `/api/tasks/` + e.target.id, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        })
-        .then(function (response) {
-          //filter the current state to remove the deleted item
-          const data = tasker.taskList.filter(
-            (task: any) => task._id !== response.data._id
-          );
-          //dispatch new state to delete action
-          dispatch(deleteTask(data));
+      try {
+        const response = await axios.delete(
+          import.meta.env.VITE_API_URL + `/api/tasks/` + e.target.id,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+
+        const data = await response.data;
+
+        dispatch(deleteTask(data));
+      } catch (err: unknown | AxiosError) {
+        if (axios.isAxiosError(err)) {
           dispatch(
             setMessage({
-              message: "Task deleted Successfully",
-              messageType: response.status,
+              message: err.message,
+              messageType: err.status,
             })
           );
           setTimeout(() => {
             dispatch(deleteMessage());
           }, 5000);
-        })
-        .catch(function (error) {
-          dispatch(
-            setMessage({
-              message: error.response.data.errorMessage,
-              messageType: error.response.status,
-            })
-          );
-        });
+        }
+      }
     } else {
       dispatch(
         setMessage({

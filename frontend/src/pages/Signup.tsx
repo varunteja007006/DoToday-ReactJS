@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../features/userSlice";
@@ -20,25 +20,35 @@ function Signup() {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.ChangeEvent<null>) => {
+  const handleSubmit = async (e: React.ChangeEvent<null>) => {
     e.preventDefault();
-    axios
-      .post(import.meta.env.VITE_API_URL+`/api/user/signup`, { ...signupData })
-      .then((response) => {
+
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + `/api/user/signup`,
+        { ...signupData }
+      );
+
+      const data = await response.data;
+
+      if (data) {
         const { email, token }: { email: string | null; token: string | null } =
-          response.data;
+          data;
         dispatch(loadUser({ email, token }));
         dispatch(deleteMessage());
-        setSignupData({ email: "", password: "" });
-      })
-      .catch((error) => {
+      }
+    } catch (err: unknown | AxiosError) {
+      if (axios.isAxiosError(err)) {
         dispatch(
           setMessage({
-            message: error.response.data.errorMessage,
-            messageType: error.response.status,
+            message: err.message,
+            messageType: err.status,
           })
         );
-      });
+      }
+    }
+
+    setSignupData({ email: "", password: "" });
   };
 
   return (

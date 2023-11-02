@@ -1,3 +1,5 @@
+type UserData = [];
+
 interface TaskType {
   _id: string;
   taskName: string;
@@ -36,4 +38,5 @@ export type {
   TaskListInitialStateType,
   UserType,
   LoginDataType,
+  UserData,
 };

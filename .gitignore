@@ -28,3 +28,4 @@ backend/.env
 notes.txt
 frontend/.env
 .gitignore
+backend/app.yaml

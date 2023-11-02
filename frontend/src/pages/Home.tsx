@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import TaskList from "../components/tasks/TaskList";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, loadTask } from "../features/taskSlice";
-import { deleteMessage, setMessage } from "../features/messageSlice";
-import NotifyMessage from "../components/messages/NotifyMessage";
 import { RootState } from "../store";
+import { deleteMessage, setMessage } from "../features/messageSlice";
+import { UserData } from "../interface/interface";
+import axios from "axios";
+import NotifyMessage from "../components/messages/NotifyMessage";
+import TaskList from "../components/tasks/TaskList";
 import LoginSubmitButton from "../components/main/LoginSubmitButton";
 
 function Home() {
@@ -22,20 +23,20 @@ function Home() {
   const handleTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTask(e.target.value);
   };
-  
+
   //handle submit
-  const handleSubmit = (e: React.ChangeEvent<null>) => {
+  const handleSubmit = async (e: React.ChangeEvent<null>) => {
+    e.preventDefault();
     if (!user) {
       dispatch(
         setMessage({ message: "You must be logged in!!", messageType: 400 })
       );
       return;
     }
-    
-    e.preventDefault();
-    axios
-      .post(
-        "http://localhost:4000/api/tasks",
+
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + `/api/tasks`,
         {
           taskName: newTask,
         },
@@ -44,9 +45,11 @@ function Home() {
             Authorization: `Bearer ${user.token}`,
           },
         }
-      )
-      .then(function (response) {
-        dispatch(addTask([response.data, ...tasker.taskList]));
+      );
+      const data = await response.data;
+
+      if (data) {
+        dispatch(addTask([data, ...tasker.taskList]));
         dispatch(
           setMessage({
             message: "New task added",
@@ -56,18 +59,20 @@ function Home() {
         setTimeout(() => {
           dispatch(deleteMessage());
         }, 5000);
-      })
-      .catch(function (error) {
+      }
+    } catch (error: any) {
+      if (error.response) {
         dispatch(
           setMessage({
             message: error.response.data.errorMessage,
             messageType: error.response.status,
           })
         );
-      });
+      }
+    }
     setNewTask("");
   };
-  
+
   //initial load of data with useEffect hook
   useEffect(() => {
     const fetchData = async () => {
@@ -78,11 +83,15 @@ function Home() {
               Authorization: `Bearer ${user.token}`,
             },
           })
-          .then(function (response) {
+          .then((response) => {
+            const data: UserData = response.data;
             if (response.status === 200 && response.statusText === "OK") {
-              dispatch(loadTask(response.data));              
               dispatch(deleteMessage);
             }
+            return data;
+          })
+          .then((data) => {
+            dispatch(loadTask(data));
           })
           .catch((error) => {
             dispatch(

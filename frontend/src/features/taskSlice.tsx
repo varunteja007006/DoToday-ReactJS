@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TaskListInitialStateType } from "../interface/interface";
 
-const initialState: TaskListInitialStateType = { taskList: [] };
+const taskList: [] = [];
+const initialState: { taskList: [] } = { taskList };
 
 const taskSlice = createSlice({
   name: "tasker",
@@ -22,6 +22,8 @@ const taskSlice = createSlice({
       });
     },
     deleteTask: (state, action) => {
+      const data: any = action.payload;
+      state.taskList.filter((task: any) => task._id !== data._id);
       state.taskList = action.payload;
     },
   },
