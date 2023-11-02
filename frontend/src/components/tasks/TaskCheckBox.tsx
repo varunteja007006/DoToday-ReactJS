@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { deleteMessage, setMessage } from "../../features/messageSlice";
-import { addTask, updateTask } from "../../features/taskSlice";
+import { updateTask } from "../../features/taskSlice";
 
 type checkBoxType = {
   id: string;
@@ -13,10 +13,8 @@ type checkBoxType = {
 function TaskCheckBox({ id, checked }: checkBoxType) {
   const dispatch = useDispatch();
   const [checkedItem, setCheckedItem] = useState<boolean>(checked);
-  const tasker = useSelector((state: RootState) => state.tasker);
   const userAuth = useSelector((state: RootState) => state.userAuth);
   const { user } = userAuth;
-  const tasks = tasker.taskList;
 
   const handleCheckbox = async (e: any) => {
     e.preventDefault();
