@@ -21,10 +21,12 @@ const taskSlice = createSlice({
         }
       });
     },
-    deleteTask: (state, action) => {
+    deleteTask: (state: any, action) => {
       const data: any = action.payload;
-      state.taskList.filter((task: any) => task._id !== data._id);
-      state.taskList = action.payload;
+      const newTasks = state.taskList.filter(
+        (task: any) => task._id !== data._id
+      );
+      state.taskList = newTasks;
     },
   },
 });
